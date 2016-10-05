@@ -205,7 +205,7 @@ The parameter should be the id (URI) of a dimension (as returned by _dimensions_
 This example fixes all but one dimension of the dataset, so returning a 1-dimensional set of observations.  The example leaves the time dimension unspecified, so the response represents a time series.
 
 ```
-http://example.com/api/v1/dimensions?dataset=http%3A%2F%2Fstatistics.gov.scot%2Fdata%2Froad-safety
+http://example.com/api/v1/slice?dataset=http%3A%2F%2Fstatistics.gov.scot%2Fdata%2Froad-safety
 &http%3A%2F%2Fpurl.org%2Flinked-data%2Fsdmx%2F2009%2Fdimension%23refArea=ttp%3A%2F%2Fstatistics.gov.scot%2Fid%2Fstatistical-geography%2FS12000034
 &http%3A%2F%2Fpurl.org%2Flinked-data%2Fcube%23measureType=http%3A%2F%2Fstatistics.gov.scot%2Fdef%2Fmeasure-properties%2Fcount
 &http%3A%2F%2Fstatistics.gov.scot%2Fdef%2Fdimension%2Fgender=http%3A%2F%2Fstatistics.gov.scot%2Fdef%2Fconcept%2Fgender%2Fmale
@@ -282,11 +282,54 @@ include the unit in the response? (in this case 'http://statistics.gov.scot/def/
 
 #### 8.1.4 Example request - 2D slice
 
+This example fixes all but two dimension of the dataset, so returning a 2-dimensional set of observations.  The example leaves the time dimension and the area dimenmsion unspecified, so the response represents a table of areas and times.
 
+```
+http://example.com/api/v1/slice?dataset=http%3A%2F%2Fstatistics.gov.scot%2Fdata%2Froad-safety
+&http%3A%2F%2Fpurl.org%2Flinked-data%2Fsdmx%2F2009%2Fdimension%23refArea=ttp%3A%2F%2Fstatistics.gov.scot%2Fid%2Fstatistical-geography%2FS12000034
+&http%3A%2F%2Fpurl.org%2Flinked-data%2Fcube%23measureType=http%3A%2F%2Fstatistics.gov.scot%2Fdef%2Fmeasure-properties%2Fcount
+&http%3A%2F%2Fstatistics.gov.scot%2Fdef%2Fdimension%2Fgender=http%3A%2F%2Fstatistics.gov.scot%2Fdef%2Fconcept%2Fgender%2Fmale
+&http%3A%2F%2Fstatistics.gov.scot%2Fdef%2Fdimension%2Fage=http%3A%2F%2Fstatistics.gov.scot%2Fdef%2Fconcept%2Fage%2Fall
+&http%3A%2F%2Fstatistics.gov.scot%2Fdef%2Fdimension%2Foutcome=http%3A%2F%2Fstatistics.gov.scot%2Fdef%2Fconcept%2Foutcome%2Fkilled-or-seriously-injured
+
+```
 
 #### 8.1.5 Example response - 2D slice
 
-
+```json
+{
+  "version":"1",
+  "observations":[
+     {
+       "id":"http://statistics.gov.scot/data/road-safety/year/2006/S92000003/gender/male/age/all/outcome/killed-or-seriously-injured/people/count",
+       "http://purl.org/linked-data/sdmx/2009/dimension#refArea":"http://statistics.gov.scot/id/statistical-geography/S92000003",
+       "http://purl.org/linked-data/sdmx/2009/dimension#refPeriod":"http://reference.data.gov.uk/id/year/2006",
+       "value":1916       
+     },
+     {
+       "id":"http://statistics.gov.scot/data/road-safety/year/2006/S12000033/gender/male/age/all/outcome/killed-or-seriously-injured/people/count",
+       "http://purl.org/linked-data/sdmx/2009/dimension#refArea":"http://statistics.gov.scot/id/statistical-geography/S12000033",
+       "http://purl.org/linked-data/sdmx/2009/dimension#refPeriod":"http://reference.data.gov.uk/id/year/2006",
+       "value":1916       
+     },
+     {
+       "id":"http://statistics.gov.scot/data/road-safety/year/2006/S12000034/gender/male/age/all/outcome/killed-or-seriously-injured/people/count",
+       "http://purl.org/linked-data/sdmx/2009/dimension#refArea":"http://statistics.gov.scot/id/statistical-geography/S12000034",
+       "http://purl.org/linked-data/sdmx/2009/dimension#refPeriod":"http://reference.data.gov.uk/id/year/2006",
+       "value":134       
+     },
+     ... (many more areas for this value of time, followed by cycling through areas for next value of time)
+     {
+       "id":"http://statistics.gov.scot/data/road-safety/year/2007/S92000003/gender/male/age/all/outcome/killed-or-seriously-injured/people/count",
+       "http://purl.org/linked-data/sdmx/2009/dimension#refArea":"http://statistics.gov.scot/id/statistical-geography/S92000003",
+       "http://purl.org/linked-data/sdmx/2009/dimension#refPeriod":"http://reference.data.gov.uk/id/year/2007",
+       "value":168       
+     },
+     ...
+ 
+  ]
+}
+```
 
 #### 8.1.6 Paging of large responses
 
@@ -303,11 +346,18 @@ This method can also be useful to check the size of a response before requesting
 
 #### 8.2.2 Parameters
 
-
+Same as for _slice_
 
 #### 8.2.3 Example request
 
-
+```
+http://example.com/api/v1/slice/num-observations?dataset=http%3A%2F%2Fstatistics.gov.scot%2Fdata%2Froad-safety
+&http%3A%2F%2Fpurl.org%2Flinked-data%2Fsdmx%2F2009%2Fdimension%23refArea=ttp%3A%2F%2Fstatistics.gov.scot%2Fid%2Fstatistical-geography%2FS12000034
+&http%3A%2F%2Fpurl.org%2Flinked-data%2Fcube%23measureType=http%3A%2F%2Fstatistics.gov.scot%2Fdef%2Fmeasure-properties%2Fcount
+&http%3A%2F%2Fstatistics.gov.scot%2Fdef%2Fdimension%2Fgender=http%3A%2F%2Fstatistics.gov.scot%2Fdef%2Fconcept%2Fgender%2Fmale
+&http%3A%2F%2Fstatistics.gov.scot%2Fdef%2Fdimension%2Fage=http%3A%2F%2Fstatistics.gov.scot%2Fdef%2Fconcept%2Fage%2Fall
+&http%3A%2F%2Fstatistics.gov.scot%2Fdef%2Fdimension%2Foutcome=http%3A%2F%2Fstatistics.gov.scot%2Fdef%2Fconcept%2Foutcome%2Fkilled-or-seriously-injured
+```
 
 #### 8.2.4 Example response
 
