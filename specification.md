@@ -186,6 +186,10 @@ This bit might change a lot!
 
 Not sure of value of slices with more than 2 dimensions, and a zero dimensional slice is covered by the _observation_ method, so not needed.  Maybe we can limit to 1D or 2D.  And Rick has a suggestion that we could always return a 2D structure, even if only 1D in reality. (to discuss).
 
+Other options: 
+* return something following the JSON-stat format.  https://json-stat.org  (example: https://json-stat.org/samples/galicia.json )
+* the Google charts table format (or similar) https://developers.google.com/chart/interactive/docs/reference#dataparam
+
 ## 8.1 Get slice contents
 ```
 GET slice
