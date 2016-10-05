@@ -26,7 +26,9 @@ This is work in progress.
 
 ## 1. Background and purpose
 
-Support web developers to use statistical data, without assuming in-depth knowledge of Linked Data
+The RDF Data Cube Vocabulary is a commonly used standard for representing statistical data as RDF.  Data provided in this form can be accessed using the existing machinery of Linked Data, but skills and tooling for use of Linked Data are less widespread than for some other web technologies.
+
+This API is designed to support web developers to use statistical data stored in the form of an RDF Data Cube, while assuming minimal knowledge of Linked Data.
 
 ### 1.1 Introduction
 
@@ -43,6 +45,8 @@ TODO: explain about data cubes - dimensions, measures, observations etc
 
 Note that cubes can be 'sparse' - not all combinations of dimensions necessarily have a corresponding observation.
 
+Refer to OpenGovIntelligence work on an 'application profile' for use of the RDF Data Cube Vocabulary.  The API assumes that the underlying data follows this approach.
+
 ## 3. API overview
 
 (TO DO: explain overall structure of API)
@@ -53,7 +57,9 @@ Use of https optional
 
 ## 4. Dimensions
 
+```
 GET dimensions
+```
 
 ### 4.1 Parameters
 
@@ -99,22 +105,50 @@ For each dimension, the _id_ and _label_ parameters are mandatory. The _order_ p
        {"id":"http://statistics.gov.scot/def/dimension/outcome",
         "label":"Outcome",
         "order":"6"
-       },
+       }
    ]
 }
 ```
 
 ## 5. Measures
 
+```
+GET measures
+```
 
 ## 6. Attributes
 
-
+```
+GET attributes
+```
 
 ## 7. Dimension values
 
+```
+GET dimension-values
+```
+
+Returns all the values of the selected dimension that appear in the selected dataset.  Note that this is not necessarily the full list of values which could in other circumstances be permitted as values of that dimension, but the ones which have at least one observation associated with them in this dataset.
+
+### 7.1 Parameters
+
+#### dataset (mandatory)
+
+
+#### dimension (mandatory)
+
+### 7.2 Example request
+
+
+### 7.3 Example response
+
+
 
 ## 8. Slice
+
+```
+GET slice
+```
 
 
 ## 9. Observation
