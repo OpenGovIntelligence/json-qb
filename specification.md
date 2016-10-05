@@ -51,9 +51,13 @@ Refer to OpenGovIntelligence work on an 'application profile' for use of the RDF
 
 (TO DO: explain overall structure of API)
 
-Note that whenever a URI appears as a parameter in a GET request, it should be URL-encoded.
+Note that whenever a URI appears as a parameter in a GET request, it should be URL-encoded.  Explain that URIs are used as identifiers.  Can treat them as just string identifiers, but for extra info, there is the option of using the Linked Data machinery, to look up that identifier and retrieve more info about it in RDF (eg JSON-LD).
+
+The API does not currently include methods to support discovery of available datasets.  It assumes that you have found the identifier (URI) of a dataset supporting this API through other means.
 
 Use of https optional
+
+Dealing with multilingual labels? eg allowing more than one label for an item with @en or @gr etc after it?  Or provide some way to specify a general language preference?  eg allow a parameter of language=en etc on any method call.
 
 ## 4. Dimensions
 
@@ -134,15 +138,43 @@ Returns all the values of the selected dimension that appear in the selected dat
 
 #### dataset (mandatory)
 
+The URI of the dataset
 
 #### dimension (mandatory)
 
+The URI of the dimension - the value of the 'id' parameter of one of the dimensions returned by the ```dimensions``` method.
+
 ### 7.2 Example request
 
+```
+http://example.com/api/v1/dimensions?dataset=http%3A%2F%2Fstatistics.gov.scot%2Fdata%2Froad-safety&dimension=http%3A%2F%2Fstatistics.gov.scot%2Fdef%2Fdimension%2Fgender
+```
+Get all the values of the 'gender' dimension in the Road Safety dataset.
 
 ### 7.3 Example response
 
+```json
+{
+   "version":"1",
+   "values":[
+      {"id":"http://statistics.gov.scot/def/concept/gender/female",
+       "label":"Female",
+       "order":"1"},
+      {"id":"http://statistics.gov.scot/def/concept/gender/female",
+       "label":"Male",
+       "order":"2"},
+      {"id":"http://statistics.gov.scot/def/concept/gender/female",
+       "label":"All",
+       "order":"3"}
+   ]
+}
+```
 
+_order_ is optional, but provides a way for the data owner to suggest a suitable order for displaying the different possible values.
+
+Note that for some dimensions there may be large number of possible values.  It is common for datasets to have thousands of values of the refArea dimension for example.  
+
+(Need to support paging for the responses to this method?)
 
 ## 8. Slice
 
@@ -154,6 +186,39 @@ GET slice
 ## 9. Observation
 
 
+## 10. Dataset metadata
+
+```
+GET dataset-metadata
+```
+Returns dataset metadata, such as title, description, licence
+
+### 10.1 Parameters
+
+
+#### Dataset (mandatory)
+
+The URI of the dataset
+
+### 10.2 Example request
+
+For dataset [http://statistics.gov.scot/data/road-safety](http://statistics.gov.scot/data/road-safety)
+```
+http://example.com/api/v1/dataset-metadata?dataset=http%3A%2F%2Fstatistics.gov.scot%2Fdata%2Froad-safety
+```
+
+### 10.3 Example response
+
+
+```json
+{
+   "version":"1",
+   "title":"Road Casualties",
+   "comment":"Number of people killed and seriously injured on Scotland's roads by age and gender",
+   "description":"Number of people killed and serious injured on Scotland's roads. These figures are from the STATS-19 statistical returns collected from the police forces across Scotland. These statistics only focus on those accidents involving killed and seriously injured casualties. The statistics were compiled from returns made by police forces, which cover all accidents in which a vehicle is involved that occur on roads (including footways) and result in personal injury, if they become known to the police. The vehicle need not be moving, and need not be in collision - for example, the returns include accidents involving people alighting from buses. Very few, if any, fatal accidents do not become known to the police. However, there will be non-fatal injury accidents which are not reported by the public to the police, and so are not counted in these statistics. The publication [Reported Road Casualties Scotland](http://www.transportscotland.gov.uk/statistics/reported-road-casualties-scotland-all-editions) provides more information on this matter. Damage only accidents are not included in the above definition, and so the road accident statistical returns do not cover damage only accidents. It is thought that the number of damage only accidents is about fourteen times the number of reported injury road accidents. For more detailed statistics of injury road accidents and a full description of the terms used see the publication Reported Road Casualties Scotland and the Key Reported Road Casualties Scotland Statistical Bulletin. The figures they contain may differ slightly from those published here due to late returns and amendments made to the database in the periods between the finalisation of the statistics for the purpose of the publications.",
+   "license":"http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+ }
+```
 
 
 
