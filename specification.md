@@ -182,6 +182,10 @@ Note that for some dimensions there may be large number of possible values.  It 
 
 ## 8. Slice
 
+This bit might change a lot!
+
+Not sure of value of slices with more than 2 dimensions, and a zero dimensional slice is covered by the _observation_ method, so not needed.  Maybe we can limit to 1D or 2D.  And Rick has a suggestion that we could always return a 2D structure, even if only 1D in reality. (to discuss).
+
 ## 8.1 Get slice contents
 ```
 GET slice
@@ -219,13 +223,61 @@ Question to consider: if there is only one possible value of a dimension in a da
   "version":"1",
   "observations":[
      {
-        
+       "id":"http://statistics.gov.scot/data/road-safety/year/2006/S12000034/gender/male/age/all/outcome/killed-or-seriously-injured/people/count",
+       "http://purl.org/linked-data/sdmx/2009/dimension#refPeriod":"http://reference.data.gov.uk/id/year/2006",
+       "value":123       
+     },
+     {
+       "id":"http://statistics.gov.scot/data/road-safety/year/2007/S12000034/gender/male/age/all/outcome/killed-or-seriously-injured/people/count",
+       "http://purl.org/linked-data/sdmx/2009/dimension#refPeriod":"http://reference.data.gov.uk/id/year/2007",
+       "value":134       
+     },
+     {
+       "id":"http://statistics.gov.scot/data/road-safety/year/2008/S12000034/gender/male/age/all/outcome/killed-or-seriously-injured/people/count",
+       "http://purl.org/linked-data/sdmx/2009/dimension#refPeriod":"http://reference.data.gov.uk/id/year/2008",
+       "value":168       
+     },
+     {
+       "id":"http://statistics.gov.scot/data/road-safety/year/2009/S12000034/gender/male/age/all/outcome/killed-or-seriously-injured/people/count",
+       "http://purl.org/linked-data/sdmx/2009/dimension#refPeriod":"http://reference.data.gov.uk/id/year/2009",
+       "value":164       
+     },
+     {
+       "id":"http://statistics.gov.scot/data/road-safety/year/2010/S12000034/gender/male/age/all/outcome/killed-or-seriously-injured/people/count",
+       "http://purl.org/linked-data/sdmx/2009/dimension#refPeriod":"http://reference.data.gov.uk/id/year/2010",
+       "value":139       
+     },
+     {
+       "id":"http://statistics.gov.scot/data/road-safety/year/2011/S12000034/gender/male/age/all/outcome/killed-or-seriously-injured/people/count",
+       "http://purl.org/linked-data/sdmx/2009/dimension#refPeriod":"http://reference.data.gov.uk/id/year/2011",
+       "value":132       
+     },
+     {
+       "id":"http://statistics.gov.scot/data/road-safety/year/2012/S12000034/gender/male/age/all/outcome/killed-or-seriously-injured/people/count",
+       "http://purl.org/linked-data/sdmx/2009/dimension#refPeriod":"http://reference.data.gov.uk/id/year/2012",
+       "value":147       
+     },
+     {
+       "id":"http://statistics.gov.scot/data/road-safety/year/2013/S12000034/gender/male/age/all/outcome/killed-or-seriously-injured/people/count",
+       "http://purl.org/linked-data/sdmx/2009/dimension#refPeriod":"http://reference.data.gov.uk/id/year/2013",
+       "value":129       
+     },
+     {
+       "id":"http://statistics.gov.scot/data/road-safety/year/2014/S12000034/gender/male/age/all/outcome/killed-or-seriously-injured/people/count",
+       "http://purl.org/linked-data/sdmx/2009/dimension#refPeriod":"http://reference.data.gov.uk/id/year/2014",
+       "value":130       
      }
   ]
 }
 ```
 
 how should we deal with ordering? (if at all - client could use the dimension-values method to find out about preferred order)
+
+should we provide labels for the free dimension values in the response, or require the client to look them up separately with the _dimension-values_ method (eg including '2014' as well as http://reference.data.gov.uk/id/year/2014 ?)
+
+include the unit in the response? (in this case 'http://statistics.gov.scot/def/concept/measure-units/people' or get that from the measure?)
+
+
 
 
 #### 8.1.4 Example request - 2D slice
