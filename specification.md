@@ -75,7 +75,7 @@ For each dimension, the _id_ and _label_ parameters are mandatory. The _order_ p
 ```json
 {
    "version":"1",
-   "dimensions"=[
+   "dimensions":[
        {"id":"http://purl.org/linked-data/sdmx/2009/dimension#refArea",
         "label":"Reference area",
         "order":"1"
