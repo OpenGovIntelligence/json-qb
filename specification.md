@@ -88,27 +88,27 @@ For each dimension, the _id_ and _label_ parameters are mandatory. The _order_ p
    "dimensions":[
        {"id":"http://purl.org/linked-data/sdmx/2009/dimension#refArea",
         "label":"Reference area",
-        "order":"1"
+        "order":1
        },
        {"id":"http://purl.org/linked-data/sdmx/2009/dimension#refPeriod",
         "label":"Reference period",
-        "order":"2"
+        "order":2
        },
        {"id":"http://purl.org/linked-data/cube#measureType",
         "label":"Measure type",
-        "order":"3"
+        "order":3
        },
        {"id":"http://statistics.gov.scot/def/dimension/gender",
         "label":"Gender",
-        "order":"4"
+        "order":4
        },       
        {"id":"http://statistics.gov.scot/def/dimension/age",
         "label":"Age",
-        "order":"5"
+        "order":5
        },
        {"id":"http://statistics.gov.scot/def/dimension/outcome",
         "label":"Outcome",
-        "order":"6"
+        "order":6
        }
    ]
 }
@@ -116,11 +116,15 @@ For each dimension, the _id_ and _label_ parameters are mandatory. The _order_ p
 
 ## 5. Measures
 
+The measure provides a definition of what the values of the observations in the dataset represent.  In many datasets there is only a single measure, but it is possible to have more than one measure in a dataset....discuss measure dimension approach...rule out multiple measures per observation?
+
 ```
 GET measures
 ```
 
 ## 6. Attributes
+
+...typically used for units...attaching unit to observations vs attaching unit to measure property?
 
 ```
 GET attributes
@@ -159,13 +163,13 @@ Get all the values of the 'gender' dimension in the Road Safety dataset.
    "values":[
       {"id":"http://statistics.gov.scot/def/concept/gender/female",
        "label":"Female",
-       "order":"1"},
+       "order":1},
       {"id":"http://statistics.gov.scot/def/concept/gender/female",
        "label":"Male",
-       "order":"2"},
+       "order":2},
       {"id":"http://statistics.gov.scot/def/concept/gender/female",
        "label":"All",
-       "order":"3"}
+       "order":3}
    ]
 }
 ```
@@ -178,10 +182,82 @@ Note that for some dimensions there may be large number of possible values.  It 
 
 ## 8. Slice
 
+## 8.1 Get slice contents
 ```
 GET slice
 ```
+Retrieve a set of observations from the data cube corresponding to particular values of selected dimensions.  For a N-dimensional data cube, the _slice_ method can return a 0,1,...N dimensional slice, depending on how many dimensions are fixed. a 0-dimensional slice is equivalent to the _observation_ method.  If no dimensions are fixed, then _slice_ will return all observations in the dataset.
 
+#### 8.1.1 Parameters
+
+##### dataset (mandatory)
+
+##### 0 or more dimension identifiers (optional)
+
+The parameter should be the id (URI) of a dimension (as returned by _dimensions_) and the value of the parameter should be the id of an allowed value of the dimension (as returned by _dimension-values_)
+
+#### 8.1.2 Example request - 1D slice
+
+This example fixes all but one dimension of the dataset, so returning a 1-dimensional set of observations.  The example leaves the time dimension unspecified, so the response represents a time series.
+
+```
+http://example.com/api/v1/dimensions?dataset=http%3A%2F%2Fstatistics.gov.scot%2Fdata%2Froad-safety
+&http%3A%2F%2Fpurl.org%2Flinked-data%2Fsdmx%2F2009%2Fdimension%23refArea=ttp%3A%2F%2Fstatistics.gov.scot%2Fid%2Fstatistical-geography%2FS12000034
+&http%3A%2F%2Fpurl.org%2Flinked-data%2Fcube%23measureType=http%3A%2F%2Fstatistics.gov.scot%2Fdef%2Fmeasure-properties%2Fcount
+&http%3A%2F%2Fstatistics.gov.scot%2Fdef%2Fdimension%2Fgender=http%3A%2F%2Fstatistics.gov.scot%2Fdef%2Fconcept%2Fgender%2Fmale
+&http%3A%2F%2Fstatistics.gov.scot%2Fdef%2Fdimension%2Fage=http%3A%2F%2Fstatistics.gov.scot%2Fdef%2Fconcept%2Fage%2Fall
+&http%3A%2F%2Fstatistics.gov.scot%2Fdef%2Fdimension%2Foutcome=http%3A%2F%2Fstatistics.gov.scot%2Fdef%2Fconcept%2Foutcome%2Fkilled-or-seriously-injured
+
+```
+
+Question to consider: if there is only one possible value of a dimension in a dataset, should we require the user to specify it?
+
+#### 8.1.3 Example response - 1D slice
+
+```json
+{
+  "version":"1",
+  "observations":[
+     {
+        
+     }
+  ]
+}
+```
+
+how should we deal with ordering? (if at all - client could use the dimension-values method to find out about preferred order)
+
+
+#### 8.1.4 Example request - 2D slice
+
+
+
+#### 8.1.5 Example response - 2D slice
+
+
+
+#### 8.1.6 Paging of large responses
+
+
+### 8.2 Slice - number of observations in the slice
+
+```
+slice/num-observations
+```
+
+This method returns the number of observations that will be returned in the slice.  Note that it is not obligatory for a data cube to have an observation for all combinations of dimension values, so the result of this method may be less than the product of the 'sizes' of each dimension.  It can be zero if there are no observations in the dataset corresponding to the specified dimensions.
+
+This method can also be useful to check the size of a response before requesting the full details, so allowing choices of paging options etc.
+
+#### 8.2.2 Parameters
+
+
+
+#### 8.2.3 Example request
+
+
+
+#### 8.2.4 Example response
 
 ## 9. Observation
 
