@@ -30,6 +30,8 @@ The RDF Data Cube Vocabulary is a commonly used standard for representing statis
 
 This API is designed to support web developers to use statistical data stored in the form of an RDF Data Cube, while assuming minimal knowledge of Linked Data.
 
+The API is designed to be deliberately 'lossy': i.e. it favours simplicity and ease of use for developers over completeness.  Some aspects of the RDF Data Cube representation of the data will not be available through the API.
+
 ### 1.1 Introduction
 
 
