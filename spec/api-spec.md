@@ -2,6 +2,9 @@
 
 This is work in progress.
 
+NOTE: The ideas in here may need to be revisited in light of the table
+format.
+
 <!-- Document Info -->
 <table class="table">
   <tr>
@@ -71,7 +74,7 @@ GET dimensions
 
 #### dataset (mandatory)
 
-The URI of the dataset. 
+The URI of the dataset.
 
 ### 4.2 Example request
 
@@ -103,7 +106,7 @@ For each dimension, the _id_ and _label_ parameters are mandatory. The _order_ p
        {"id":"http://statistics.gov.scot/def/dimension/gender",
         "label":"Gender",
         "order":4
-       },       
+       },
        {"id":"http://statistics.gov.scot/def/dimension/age",
         "label":"Age",
         "order":5
@@ -178,7 +181,7 @@ Get all the values of the 'gender' dimension in the Road Safety dataset.
 
 _order_ is optional, but provides a way for the data owner to suggest a suitable order for displaying the different possible values.
 
-Note that for some dimensions there may be large number of possible values.  It is common for datasets to have thousands of values of the refArea dimension for example.  
+Note that for some dimensions there may be large number of possible values.  It is common for datasets to have thousands of values of the refArea dimension for example.
 
 (Need to support paging for the responses to this method?)
 
@@ -188,7 +191,7 @@ This bit might change a lot!
 
 Not sure of value of slices with more than 2 dimensions, and a zero dimensional slice is covered by the _observation_ method, so not needed.  Maybe we can limit to 1D or 2D.  And Rick has a suggestion that we could always return a 2D structure, even if only 1D in reality. (to discuss).
 
-Other options: 
+Other options:
 * return something following the JSON-stat format.  https://json-stat.org  (example: https://json-stat.org/samples/galicia.json )
 * the Google charts table format (or similar) https://developers.google.com/chart/interactive/docs/reference#dataparam
 
@@ -231,47 +234,47 @@ Question to consider: if there is only one possible value of a dimension in a da
      {
        "id":"http://statistics.gov.scot/data/road-safety/year/2006/S12000034/gender/male/age/all/outcome/killed-or-seriously-injured/people/count",
        "http://purl.org/linked-data/sdmx/2009/dimension#refPeriod":"http://reference.data.gov.uk/id/year/2006",
-       "value":123       
+       "value":123
      },
      {
        "id":"http://statistics.gov.scot/data/road-safety/year/2007/S12000034/gender/male/age/all/outcome/killed-or-seriously-injured/people/count",
        "http://purl.org/linked-data/sdmx/2009/dimension#refPeriod":"http://reference.data.gov.uk/id/year/2007",
-       "value":134       
+       "value":134
      },
      {
        "id":"http://statistics.gov.scot/data/road-safety/year/2008/S12000034/gender/male/age/all/outcome/killed-or-seriously-injured/people/count",
        "http://purl.org/linked-data/sdmx/2009/dimension#refPeriod":"http://reference.data.gov.uk/id/year/2008",
-       "value":168       
+       "value":168
      },
      {
        "id":"http://statistics.gov.scot/data/road-safety/year/2009/S12000034/gender/male/age/all/outcome/killed-or-seriously-injured/people/count",
        "http://purl.org/linked-data/sdmx/2009/dimension#refPeriod":"http://reference.data.gov.uk/id/year/2009",
-       "value":164       
+       "value":164
      },
      {
        "id":"http://statistics.gov.scot/data/road-safety/year/2010/S12000034/gender/male/age/all/outcome/killed-or-seriously-injured/people/count",
        "http://purl.org/linked-data/sdmx/2009/dimension#refPeriod":"http://reference.data.gov.uk/id/year/2010",
-       "value":139       
+       "value":139
      },
      {
        "id":"http://statistics.gov.scot/data/road-safety/year/2011/S12000034/gender/male/age/all/outcome/killed-or-seriously-injured/people/count",
        "http://purl.org/linked-data/sdmx/2009/dimension#refPeriod":"http://reference.data.gov.uk/id/year/2011",
-       "value":132       
+       "value":132
      },
      {
        "id":"http://statistics.gov.scot/data/road-safety/year/2012/S12000034/gender/male/age/all/outcome/killed-or-seriously-injured/people/count",
        "http://purl.org/linked-data/sdmx/2009/dimension#refPeriod":"http://reference.data.gov.uk/id/year/2012",
-       "value":147       
+       "value":147
      },
      {
        "id":"http://statistics.gov.scot/data/road-safety/year/2013/S12000034/gender/male/age/all/outcome/killed-or-seriously-injured/people/count",
        "http://purl.org/linked-data/sdmx/2009/dimension#refPeriod":"http://reference.data.gov.uk/id/year/2013",
-       "value":129       
+       "value":129
      },
      {
        "id":"http://statistics.gov.scot/data/road-safety/year/2014/S12000034/gender/male/age/all/outcome/killed-or-seriously-injured/people/count",
        "http://purl.org/linked-data/sdmx/2009/dimension#refPeriod":"http://reference.data.gov.uk/id/year/2014",
-       "value":130       
+       "value":130
      }
   ]
 }
@@ -310,29 +313,29 @@ http://example.com/api/v1/slice?dataset=http%3A%2F%2Fstatistics.gov.scot%2Fdata%
        "id":"http://statistics.gov.scot/data/road-safety/year/2006/S92000003/gender/male/age/all/outcome/killed-or-seriously-injured/people/count",
        "http://purl.org/linked-data/sdmx/2009/dimension#refArea":"http://statistics.gov.scot/id/statistical-geography/S92000003",
        "http://purl.org/linked-data/sdmx/2009/dimension#refPeriod":"http://reference.data.gov.uk/id/year/2006",
-       "value":1916       
+       "value":1916
      },
      {
        "id":"http://statistics.gov.scot/data/road-safety/year/2006/S12000033/gender/male/age/all/outcome/killed-or-seriously-injured/people/count",
        "http://purl.org/linked-data/sdmx/2009/dimension#refArea":"http://statistics.gov.scot/id/statistical-geography/S12000033",
        "http://purl.org/linked-data/sdmx/2009/dimension#refPeriod":"http://reference.data.gov.uk/id/year/2006",
-       "value":1916       
+       "value":1916
      },
      {
        "id":"http://statistics.gov.scot/data/road-safety/year/2006/S12000034/gender/male/age/all/outcome/killed-or-seriously-injured/people/count",
        "http://purl.org/linked-data/sdmx/2009/dimension#refArea":"http://statistics.gov.scot/id/statistical-geography/S12000034",
        "http://purl.org/linked-data/sdmx/2009/dimension#refPeriod":"http://reference.data.gov.uk/id/year/2006",
-       "value":134       
+       "value":134
      },
      ... (many more areas for this value of time, followed by cycling through areas for next value of time)
      {
        "id":"http://statistics.gov.scot/data/road-safety/year/2007/S92000003/gender/male/age/all/outcome/killed-or-seriously-injured/people/count",
        "http://purl.org/linked-data/sdmx/2009/dimension#refArea":"http://statistics.gov.scot/id/statistical-geography/S92000003",
        "http://purl.org/linked-data/sdmx/2009/dimension#refPeriod":"http://reference.data.gov.uk/id/year/2007",
-       "value":168       
+       "value":168
      },
      ...
- 
+
   ]
 }
 ```
@@ -403,8 +406,3 @@ http://example.com/api/v1/dataset-metadata?dataset=http%3A%2F%2Fstatistics.gov.s
    "license":"http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
  }
 ```
-
-
-
-
-
