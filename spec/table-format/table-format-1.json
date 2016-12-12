@@ -1,85 +1,201 @@
 {"@id":"http://statistics.gov.scot/data/births",
  "title":"Births",
- "issued":"2014-07-29t02:00:00+02:00",
- "headings": {"refArea": ["S12000005", "S12000042", "S12000034", "S12000035", "S12000041", "S12000013", "S12000006", "S12000036", "S12000033"],
+ "modified":"2016-02-09T12:17:48Z",
+ "issued":"2014-07-29T02:00:00+02:00",
+ "headings": {"refArea": ["S12000005", "S12000042", "S12000034", "S12000035", "S12000041", "S12000013", "S12000006", "S12000036", "S12000008", "S12000045",
+                           "S12000033"],
               "refPeriod":["1999", "2000", "2001", "2002", "2003", "2004"]},
- "data_by":"refPeriod",
- "total_cells": 186,
- "data": {"1999":[2311, 2501, 1085, 834, 4764, 544, 265, 1402, 1522],
-          "2000":[2088, 2320, 1049, 792, 4643, 490, 228, 1369, 1462],
-          "2001":[2097, 2247, 1103, 780, 4489, 529, 226, 1283, 1468],
-          "2002":[2098, 2326, 1014, 755, 4477, 480, 242, 1343, 1436],
-          "2003":[2003, 2368, 1089, 732, 4577, 468, 255, 1307, 1548],
-          "2004":[2075, 2388, 1071, 807, 4568, 501, 223, 1431, 1539]},
- "structure": {"@id":"http://statistics.gov.scot/data/births/structure",
-               "free-dimensions": {"refarea": {"@id":"http://purl.org/linked-data/sdmx/2009/dimension#refarea",
-                                          "label":"Reference Area"},
-                              "refperiod": {"@id":"http://purl.org/linked-data/sdmx/2009/dimension#refperiod",
-                                            "label":"Reference Period"}},
-               "locked-dimensions": {"timeperiod": {"@id":"http://statistics.gov.scot/def/dimension/timePeriod",
-                                                    "label":"time period",
-                                                    "locked-value": {"@id":
-                                                                     "http://statistics.gov.scot/def/concept/time-period/calendar-year",
-                                                                     "label":"Calendar Year"}},
-                                     "gender": {"@id":"http://statistics.gov.scot/def/dimension/gender",
-                                                "label":"Gender",
-                                                "locked-value": {"@id":"http://statistics.gov.scot/def/concept/gender/all",
-                                                                 "label":"All"}}},
-               "dimension-values": {"refArea": {"S12000005": {"@id": "http://statistics.gov.scot/id/statistical-geography/S12000005",
-                                                              "label":"Clackmannanshire"},
-                                                "S12000042": {"@id": "http://statistics.gov.scot/id/statistical-geography/S12000042",
-                                                              "label":"Dundee City"},
-                                                "S12000034": {"@id": "http://statistics.gov.scot/id/statistical-geography/S12000034",
-                                                              "label":"Aberdeenshire"},
-                                                "S12000035": {"@id": "http://statistics.gov.scot/id/statistical-geography/S12000035",
-                                                              "label":"Argyl"},
-                                                "S12000041": {"@id": "http://statistics.gov.scot/id/statistical-geography/S12000041",
-                                                              "label":"Angus"},
-                                                "S12000013": {"@id": "http://statistics.gov.scot/id/statistical-geography/S12000013",
-                                                              "label":"Comhairle nan Eilean Siar"},
-                                                "S12000006": {"@id": "http://statistics.gov.scot/id/statistical-geography/S12000006",
-                                                              "label":"Dumfries and Galloway"},
-                                                "S12000036": {"@id": "http://statistics.gov.scot/id/statistical-geography/S12000036",
-                                                              "label":"Edinburgh"},
-                                                "S12000033": {"@id": "http://statistics.gov.scot/doc/statistical-geography/S12000033",
-                                                              "label":"Aberdeen"}
-                                               },
-                                    "refPeriod": {"1999": {"@id":"http://reference.data.gov.uk/id/year/1999",
-                                                           "label":"1999"},
-                                                  "2000": {"@id":"http://reference.data.gov.uk/id/year/2000",
-                                                           "label":"2000"},
-                                                  "2001": {"@id":"http://reference.data.gov.uk/id/year/2001",
-                                                           "label":"2001"},
-                                                  "2002": {"@id":"http://reference.data.gov.uk/id/year/2002",
-                                                           "label":"2002"},
-                                                  "2003": {"@id":"http://reference.data.gov.uk/id/year/2003",
-                                                           "label":"2003"},
-                                                  "2004": {"@id":"http://reference.data.gov.uk/id/year/2004",
-                                                           "label":"2004"}
-                                                 }}},
- "modified":"2016-02-09t12:17:48z",
- "description": "the national records of scotland (nrs) is responsible for the organisation and administration of the records of births in scotland.  data on births for calendar years relate to the date of registration of the event and not the date of occurrence. data on births between mid points of years are based on date of occurrence and refer to the number of births which occurred between 1 july of the previous year and 30 june of the year specified in the data.  births are counted on the basis of the area of usual residence of the mother if that is in scotland, otherwise they are counted on the basis of the place of birth.",
-"@context": {"refPeriod": {"@id":"http://purl.org/linked-data/sdmx/2009/dimension#refPeriod"},
-             "issued": {"@id":"dct:issued", "@type":"http://www.w3.org/2001/XMLSchema#dateTime"},
-             "calendar-year": {"@id": "http://statistics.gov.scot/def/concept/time-period/calendar-year"},
-             "structure":"qb:structure",
-             "label":"rdfs:label",
-             "dimensions":{"@id":"qb:component", "@container":"@index"},
-             "rdfs":"http://www.w3.org/2000/01/rdf-schema#",
-             "title":"dct:title",
-             "refArea": {"@id":"http://purl.org/linked-data/sdmx/2009/dimension#refArea"},
-             "modified": {"@id":"dct:modified", "@type":"http://www.w3.org/2001/XMLSchema#dateTime"},
-             "dct":"http://purl.org/dc/terms/",
-             "components":"http://purl.org/linked-data/cube#component",
-             "qb":"http://purl.org/linked-data/cube#",
-             "description":"dct:description"
-            },
- "pagination":
- {"self":"http://example.com/table?page=1&size=10",
-  "first":"http://example.com/table?page=1&size=10",
-  "prev":null,
-  "next":"http://example.com/table?page=2&size=10",
-  "last":"http://example.com/table?page=3&size=10",
-  "current_page":1,
-  "page_size":10}
-}
+ "table_by":"refPeriod"
+
+ "table":
+ {"1999":
+  [{"@id": "http://statistics.gov.scot/data/births/year/1999/S12000033/gender/all/time-period/calendar-year/births/count", "value":2311, "qb:measureType":"count"},
+   {"@id": "http://statistics.gov.scot/data/births/year/1999/S12000034/gender/all/time-period/calendar-year/births/count", "value":2501, "qb:measureType":"count"},
+   {"@id": "http://statistics.gov.scot/data/births/year/1999/S12000041/gender/all/time-period/calendar-year/births/count", "value":1085, "qb:measureType":"count"},
+   {"@id": "http://statistics.gov.scot/data/births/year/1999/S12000035/gender/all/time-period/calendar-year/births/count", "value":834, "qb:measureType":"count"},
+   {"@id": "http://statistics.gov.scot/data/births/year/1999/S12000036/gender/all/time-period/calendar-year/births/count", "value":4764, "qb:measureType":"count"},
+   {"@id": "http://statistics.gov.scot/data/births/year/1999/S12000005/gender/all/time-period/calendar-year/births/count", "value":544, "qb:measureType":"count"},
+   {"@id": "http://statistics.gov.scot/data/births/year/1999/S12000006/gender/all/time-period/calendar-year/births/count", "value":265, "qb:measureType":"count"},
+   {"@id": "http://statistics.gov.scot/data/births/year/1999/S12000042/gender/all/time-period/calendar-year/births/count", "value":1402, "qb:measureType":"count"},
+   {"@id": "http://statistics.gov.scot/data/births/year/1999/S12000008/gender/all/time-period/calendar-year/births/count", "value":1522, "qb:measureType":"count"}],
+  "2000":
+  [{"@id": "http://statistics.gov.scot/data/births/year/2000/S12000033/gender/all/time-period/calendar-year/births/count", "value":2088, "qb:measureType":"count"},
+   {"@id": "http://statistics.gov.scot/data/births/year/2000/S12000034/gender/all/time-period/calendar-year/births/count", "value":2320, "qb:measureType":"count"},
+   {"@id": "http://statistics.gov.scot/data/births/year/2000/S12000041/gender/all/time-period/calendar-year/births/count", "value":1049, "qb:measureType":"count"},
+   {"@id": "http://statistics.gov.scot/data/births/year/2000/S12000035/gender/all/time-period/calendar-year/births/count", "value":792, "qb:measureType":"count"},
+   {"@id": "http://statistics.gov.scot/data/births/year/2000/S12000036/gender/all/time-period/calendar-year/births/count", "value":4643, "qb:measureType":"count"},
+   {"@id": "http://statistics.gov.scot/data/births/year/2000/S12000005/gender/all/time-period/calendar-year/births/count", "value":490, "qb:measureType":"count"},
+   {"@id": "http://statistics.gov.scot/data/births/year/2000/S12000006/gender/all/time-period/calendar-year/births/count", "value":228, "qb:measureType":"count"},
+   {"@id": "http://statistics.gov.scot/data/births/year/2000/S12000042/gender/all/time-period/calendar-year/births/count", "value":1369, "qb:measureType":"count"},
+   {"@id": "http://statistics.gov.scot/data/births/year/2000/S12000008/gender/all/time-period/calendar-year/births/count", "value":1462, "qb:measureType":"count"}],
+  "2001":
+  [{"@id": "http://statistics.gov.scot/data/births/year/2001/S12000033/gender/all/time-period/calendar-year/births/count", "value":2097, "qb:measureType":"count"},
+   {"@id": "http://statistics.gov.scot/data/births/year/2001/S12000034/gender/all/time-period/calendar-year/births/count", "value":2247, "qb:measureType":"count"},
+   {"@id": "http://statistics.gov.scot/data/births/year/2001/S12000041/gender/all/time-period/calendar-year/births/count", "value":1103, "qb:measureType":"count"},
+   {"@id": "http://statistics.gov.scot/data/births/year/2001/S12000035/gender/all/time-period/calendar-year/births/count", "value":780, "qb:measureType":"count"},
+   {"@id": "http://statistics.gov.scot/data/births/year/2001/S12000036/gender/all/time-period/calendar-year/births/count", "value":4489, "qb:measureType":"count"},
+   {"@id": "http://statistics.gov.scot/data/births/year/2001/S12000005/gender/all/time-period/calendar-year/births/count", "value":529, "qb:measureType":"count"},
+   {"@id": "http://statistics.gov.scot/data/births/year/2001/S12000006/gender/all/time-period/calendar-year/births/count", "value":226, "qb:measureType":"count"},
+   {"@id": "http://statistics.gov.scot/data/births/year/2001/S12000042/gender/all/time-period/calendar-year/births/count", "value":1283, "qb:measureType":"count"},
+   {"@id": "http://statistics.gov.scot/data/births/year/2001/S12000008/gender/all/time-period/calendar-year/births/count", "value":1468, "qb:measureType":"count"},
+   {"@id": "http://statistics.gov.scot/data/births/year/2001/S12000008/gender/all/time-period/calendar-year/births/count", "value":1198, "qb:measureType":"count"}],
+  "2002":
+  [{"@id": "http://statistics.gov.scot/data/births/year/2002/S12000033/gender/all/time-period/calendar-year/births/count", "value":2098, "qb:measureType":"count"},
+   {"@id": "http://statistics.gov.scot/data/births/year/2002/S12000034/gender/all/time-period/calendar-year/births/count", "value":2326, "qb:measureType":"count"},
+   {"@id": "http://statistics.gov.scot/data/births/year/2002/S12000041/gender/all/time-period/calendar-year/births/count", "value":1014, "qb:measureType":"count"},
+   {"@id": "http://statistics.gov.scot/data/births/year/2002/S12000035/gender/all/time-period/calendar-year/births/count", "value":755, "qb:measureType":"count"},
+   {"@id": "http://statistics.gov.scot/data/births/year/2002/S12000036/gender/all/time-period/calendar-year/births/count", "value":4477, "qb:measureType":"count"},
+   {"@id": "http://statistics.gov.scot/data/births/year/2002/S12000005/gender/all/time-period/calendar-year/births/count", "value":480, "qb:measureType":"count"},
+   {"@id": "http://statistics.gov.scot/data/births/year/2002/S12000006/gender/all/time-period/calendar-year/births/count", "value":242, "qb:measureType":"count"},
+   {"@id": "http://statistics.gov.scot/data/births/year/2002/S12000042/gender/all/time-period/calendar-year/births/count", "value":1343, "qb:measureType":"count"},
+   {"@id": "http://statistics.gov.scot/data/births/year/2002/S12000008/gender/all/time-period/calendar-year/births/count", "value":1436, "qb:measureType":"count"}],
+  "2003":
+  [{"@id": "http://statistics.gov.scot/data/births/year/2003/S12000033/gender/all/time-period/calendar-year/births/count", "value":2003, "qb:measureType":"count"},
+   {"@id": "http://statistics.gov.scot/data/births/year/2003/S12000034/gender/all/time-period/calendar-year/births/count", "value":2368, "qb:measureType":"count"},
+   {"@id": "http://statistics.gov.scot/data/births/year/2003/S12000041/gender/all/time-period/calendar-year/births/count", "value":1089, "qb:measureType":"count"},
+   {"@id": "http://statistics.gov.scot/data/births/year/2003/S12000035/gender/all/time-period/calendar-year/births/count", "value":732, "qb:measureType":"count"},
+   {"@id": "http://statistics.gov.scot/data/births/year/2003/S12000036/gender/all/time-period/calendar-year/births/count", "value":4577, "qb:measureType":"count"},
+   {"@id": "http://statistics.gov.scot/data/births/year/2003/S12000005/gender/all/time-period/calendar-year/births/count", "value":468, "qb:measureType":"count"},
+   {"@id": "http://statistics.gov.scot/data/births/year/2003/S12000006/gender/all/time-period/calendar-year/births/count", "value":255, "qb:measureType":"count"},
+   {"@id": "http://statistics.gov.scot/data/births/year/2003/S12000042/gender/all/time-period/calendar-year/births/count", "value":1307, "qb:measureType":"count"},
+   {"@id": "http://statistics.gov.scot/data/births/year/2003/S12000008/gender/all/time-period/calendar-year/births/count", "value":1548, "qb:measureType":"count"}],
+  "2004":
+  [{"@id": "http://statistics.gov.scot/data/births/year/2004/S12000033/gender/all/time-period/calendar-year/births/count", "value":2075, "qb:measureType":"count"},
+   {"@id": "http://statistics.gov.scot/data/births/year/2004/S12000034/gender/all/time-period/calendar-year/births/count", "value":2388, "qb:measureType":"count"},
+   {"@id": "http://statistics.gov.scot/data/births/year/2004/S12000041/gender/all/time-period/calendar-year/births/count", "value":1071, "qb:measureType":"count"},
+   {"@id": "http://statistics.gov.scot/data/births/year/2004/S12000035/gender/all/time-period/calendar-year/births/count", "value":807, "qb:measureType":"count"},
+   {"@id": "http://statistics.gov.scot/data/births/year/2004/S12000036/gender/all/time-period/calendar-year/births/count", "value":4568, "qb:measureType":"count"},
+   {"@id": "http://statistics.gov.scot/data/births/year/2004/S12000005/gender/all/time-period/calendar-year/births/count", "value":501, "qb:measureType":"count"},
+   {"@id": "http://statistics.gov.scot/data/births/year/2004/S12000006/gender/all/time-period/calendar-year/births/count", "value":223, "qb:measureType":"count"},
+   {"@id": "http://statistics.gov.scot/data/births/year/2004/S12000042/gender/all/time-period/calendar-year/births/count", "value":1431, "qb:measureType":"count"},
+   {"@id": "http://statistics.gov.scot/data/births/year/2004/S12000008/gender/all/time-period/calendar-year/births/count", "value":1539, "qb:measureType":"count"},
+   {"@id": "http://statistics.gov.scot/data/births/year/2004/S12000008/gender/all/time-period/calendar-year/births/count", "value":1271, "qb:measureType":"count"}]},
+ "pagination": {"self":"http://example.com/table?page=1&size=10",
+                "first":"http://example.com/table?page=1&size=10",
+                "prev":null,
+                "next":"http://example.com/table?page=2&size=10",
+                "last":"http://example.com/table?page=3&size=10",
+                "current_page":1,
+                "page_size":10},
+ "@context": {"refPeriod":
+              {"@id":"http://purl.org/linked-data/sdmx/2009/dimension#refPeriod"},
+              "issued": {"@id":"dct:issued",
+                         "@type":"http://www.w3.org/2001/XMLSchema#dateTime"},
+              "calendar-year": {"@id": "http://statistics.gov.scot/def/concept/time-period/calendar-year"},
+              "label":"rdfs:label", "count":"scotmeas:count",
+              "scotmeas": {"@id":"http://statistics.gov.scot/def/measure-properties/"},
+              "rdfs":"http://www.w3.org/2000/01/rdf-schema#",
+              "title":"dct:title",
+              "refArea": {"@id":"http://purl.org/linked-data/sdmx/2009/dimension#refArea"},
+              "modified": {"@id":"dct:modified",
+                           "@type":"http://www.w3.org/2001/XMLSchema#dateTime"},
+              "dct":"http://purl.org/dc/terms/",
+              "components":{"@id":"qb:component", "@container":"@index"},
+              "qb":"http://purl.org/linked-data/cube#",
+              "description":"dct:description"},
+ "structure":
+ {"free_dimensions": {"refarea":
+                      {"@id":"http://purl.org/linked-data/sdmx/2009/dimension#refarea",
+                       "label":"Reference Area"},
+                      "refperiod":
+                      {"@id":"http://purl.org/linked-data/sdmx/2009/dimension#refperiod",
+                       "label":"Reference Period"}},
+  "locked_dimensions": {"timeperiod":
+                        {"@id":"http://statistics.gov.scot/def/dimension/timePeriod",
+                         "label":"time period",
+                         "locked_value":
+                         {"@id":
+                          "http://statistics.gov.scot/def/concept/time-period/calendar-year",
+                          "label":"Calendar Year"}},
+                        "gender":
+                        {"@id":"http://statistics.gov.scot/def/dimension/gender",
+                         "label":"Gender",
+                         "locked_value":
+                         {"@id":"http://statistics.gov.scot/def/concept/gender/all",
+                          "label":"All"}}},
+  "all_dimensions": {"refarea":
+                     {"@id":"http://purl.org/linked-data/sdmx/2009/dimension#refarea",
+                      "label":"Reference Area"},
+                     "refperiod":
+                     {"@id":"http://purl.org/linked-data/sdmx/2009/dimension#refperiod",
+                      "label":"Reference Period"},
+                     "gender":
+                     {"@id":"http://statistics.gov.scot/def/dimension/gender",
+                      "label":"Gender"},
+                     "timeperiod":
+                     {"@id":"http://statistics.gov.scot/def/dimension/timePeriod",
+                      "label":"Time Period"}},
+  "all_dimension_values":
+  {"refArea": {"S12000005":
+               {"@id":
+                "http://statistics.gov.scot/id/statistical-geography/S12000005",
+                "label":"Clackmannanshire"},
+               "S12000042":
+               {"@id": "http://statistics.gov.scot/id/statistical-geography/S12000042",
+                "label":"Dundee City"},
+               "S12000034":
+               {"@id": "http://statistics.gov.scot/id/statistical-geography/S12000034",
+                "label":"Aberdeenshire"},
+               "S12000035":
+               {"@id": "http://statistics.gov.scot/id/statistical-geography/S12000035",
+                "label":"Argyl"},
+               "S12000041":
+               {"@id": "http://statistics.gov.scot/id/statistical-geography/S12000041",
+                "label":"Angus"},
+               "S12000013":
+               {"@id":
+                "http://statistics.gov.scot/id/statistical-geography/S12000013",
+                "label":"Comhairle nan Eilean Siar"},
+               "S12000006":
+               {"@id":
+                "http://statistics.gov.scot/id/statistical-geography/S12000006",
+                "label":"Dumfries and Galloway"},
+               "S12000036":
+               {"@id":
+                "http://statistics.gov.scot/id/statistical-geography/S12000036",
+                "label":"Edinburgh"},
+               "S12000008":
+               {"@id":
+                "http://statistics.gov.scot/id/statistical-geography/S12000008",
+                "label":"East Ayrshire"},
+               "S12000045":
+               {"@id":
+                "http://statistics.gov.scot/id/statistical-geography/S12000045",
+                "label":"East Dumbartonshire"},
+               "S12000033":
+               {"@id":
+                "http://statistics.gov.scot/doc/statistical-geography/S12000033",
+                "label":"Aberdeen"}},
+   "refPeriod": {"1999":
+                 {"@id":"http://reference.data.gov.uk/id/year/1999",
+                  "label":"1999"},
+                 "2000":
+                 {"@id":"http://reference.data.gov.uk/id/year/2000",
+                  "label":"2000"},
+                 "2001":
+                 {"@id":"http://reference.data.gov.uk/id/year/2001",
+                  "label":"2001"},
+                 "2002":
+                 {"@id":"http://reference.data.gov.uk/id/year/2002",
+                  "label":"2002"},
+                 "2003":
+                 {"@id":"http://reference.data.gov.uk/id/year/2003",
+                  "label":"2003"},
+                 "2004":
+                 {"@id":"http://reference.data.gov.uk/id/year/2004",
+                  "label":"2004"}},
+   "timePeriod": {"between-mid-points-of-years":
+                  {"@id": "http://statistics.gov.scot/def/concept/time-period/between-mid-points-of-years",
+                   "label":"Between Mid Points Of Years"},
+                  "2004":
+                  {"@id":"http://reference.data.gov.uk/id/year/2004",
+                   "label":"2004"}},
+   "gender": {"all":
+              {"@id":"http://statistics.gov.scot/def/concept/gender/all",
+               "label":"All"},
+              "female":
+              {"@id":"http://statistics.gov.scot/def/concept/gender/female",
+               "label":"Female"},
+              "male":
+              {"@id":"http://statistics.gov.scot/def/concept/gender/male",
+               "label":"Male"}}}}}
