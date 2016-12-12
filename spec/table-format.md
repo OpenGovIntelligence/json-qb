@@ -185,7 +185,8 @@ table above:
                      "timeperiod":
                      {"@id":"http://statistics.gov.scot/def/dimension/timePeriod",
                       "label":"Time Period"}},
-{"refArea": {"S12000005":
+  "all_dimension_values":
+  {"refArea": {"S12000005":
                {"@id":
                 "http://statistics.gov.scot/id/statistical-geography/S12000005",
                 "label":"Clackmannanshire"},
