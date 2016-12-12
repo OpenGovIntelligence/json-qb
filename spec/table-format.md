@@ -132,7 +132,107 @@ following table:
 Below we describe piece by piece the relevant parts of a Core Table
 document, the complete example of the above table is described in [/spec/table-format/table-format-1.json](/spec/table-format/table-format-1.json).
 
-## Multiple Column Table
+## Dimension Metadata & Stucture (Any number of Free Dimensions)
+
+The `structure` object contains sub-objects `all_dimensions` and
+`all_dimension_values` that represent all available dimensions and all
+their possible values in the cube.  This meta data is intended to be
+included in every response to provide applications with knowledge of
+all the available drop downs and their available values.
+
+This structure will always be present regardless of the dimensionality
+and number of free dimensions.
+
+Additionally the objects `free_dimensions`, and `locked_dimensions`
+provide information on the "drill-down" state, i.e. the dimensions
+that the `locked_value` of the `locked_dimensions`, and the free
+dimensions - which will ultimately be related to the `headings` when
+there are either 1 or 2 free dimensions.
+
+For example the following is the structure object associated with the
+table above:
+
+```json
+"structure":
+ {"free_dimensions": {"refarea":
+                      {"@id":"http://purl.org/linked-data/sdmx/2009/dimension#refarea",
+                       "label":"Reference Area"},
+                      "refperiod":
+                      {"@id":"http://purl.org/linked-data/sdmx/2009/dimension#refperiod",
+                       "label":"Reference Period"}},
+  "locked_dimensions": {"timeperiod":
+                        {"@id":"http://statistics.gov.scot/def/dimension/timePeriod",
+                         "label":"time period",
+                         "locked_value":
+                         {"@id":
+                          "http://statistics.gov.scot/def/concept/time-period/calendar-year",
+                          "label":"Calendar Year"}},
+                        "gender":
+                        {"@id":"http://statistics.gov.scot/def/dimension/gender",
+                         "label":"Gender",
+                         "locked_value":
+                         {"@id":"http://statistics.gov.scot/def/concept/gender/all",
+                          "label":"All"}}},
+  "all_dimensions": {"refarea":
+                     {"@id":"http://purl.org/linked-data/sdmx/2009/dimension#refarea",
+                      "label":"Reference Area"},
+                     "refperiod":
+                     {"@id":"http://purl.org/linked-data/sdmx/2009/dimension#refperiod",
+                      "label":"Reference Period"},
+                     "gender":
+                     {"@id":"http://statistics.gov.scot/def/dimension/gender",
+                      "label":"Gender"},
+                     "timeperiod":
+                     {"@id":"http://statistics.gov.scot/def/dimension/timePeriod",
+                      "label":"Time Period"}},
+{"refArea": {"S12000005":
+               {"@id":
+                "http://statistics.gov.scot/id/statistical-geography/S12000005",
+                "label":"Clackmannanshire"},
+               "S12000042":
+               {"@id": "http://statistics.gov.scot/id/statistical-geography/S12000042",
+                "label":"Dundee City"},
+               "S12000034":
+               {"@id": "http://statistics.gov.scot/id/statistical-geography/S12000034",
+                "label":"Aberdeenshire"},
+                "...": "more..."
+                },
+   "refPeriod": {"1999":
+                 {"@id":"http://reference.data.gov.uk/id/year/1999",
+                  "label":"1999"},
+                 "2000":
+                 {"@id":"http://reference.data.gov.uk/id/year/2000",
+                  "label":"2000"},
+                 "2001":
+                 {"@id":"http://reference.data.gov.uk/id/year/2001",
+                  "label":"2001"},
+                 "2002":
+                 {"@id":"http://reference.data.gov.uk/id/year/2002",
+                  "label":"2002"},
+                 "2003":
+                 {"@id":"http://reference.data.gov.uk/id/year/2003",
+                  "label":"2003"},
+                 "2004":
+                 {"@id":"http://reference.data.gov.uk/id/year/2004",
+                  "label":"2004"}},
+   "timePeriod": {"between-mid-points-of-years":
+                  {"@id": "http://statistics.gov.scot/def/concept/time-period/between-mid-points-of-years",
+                   "label":"Between Mid Points Of Years"},
+                  "2004":
+                  {"@id":"http://reference.data.gov.uk/id/year/2004",
+                   "label":"2004"}},
+   "gender": {"all":
+              {"@id":"http://statistics.gov.scot/def/concept/gender/all",
+               "label":"All"},
+              "female":
+              {"@id":"http://statistics.gov.scot/def/concept/gender/female",
+               "label":"Female"},
+              "male":
+              {"@id":"http://statistics.gov.scot/def/concept/gender/male",
+               "label":"Male"}}}
+````
+
+## Multiple Column Table (2 Free Dimensions)
 
 We define the keys `table`, `table_by`, `headings` and `total_cells`
 to describe a multi column table or 2D slice.  The `headings` and
@@ -202,11 +302,7 @@ ideally they normally would be.  To make sure we have the right labels
 for each value we need to look the values up inside `[structure
 dimension-values <dimension-value-key> label]`
 
-## Dimension Metadata / qb:stucture
-
-
-
-## Single Column Table (1D slice)
+## Single Column Table (1 Free Dimension)
 
 When the dimensions are sufficiently locked to form a single column
 the data will be represented like this:
@@ -294,7 +390,29 @@ not contradictory to the source RDF.
 
 We believe it important that if we are to leverage the JSON-LD
 standard for its features, then we are compelled to also ensure it is
-correct and semantically valid RDF.
+correct and semantically valid RDF.  However in the current JSON-LD
+implementation it is not really possible to communicate the graph
+perfectly without [adversely impacting the JSON implementation](https://github.com/json-ld/json-ld.org/issues/443).
+
+The reason for this is due to limitations in JSON-LD's expressive
+power and the fact that DSD's are quite deep structures and
+consequently require you to add extra depth to the JSON document, at
+the expense of the JSON user.
+
+My goal therefore was to represent an isomorphic subset of the graph
+that corresponds precisely with the real RDF.  This subset is really
+only intended to be correct, not complete, nor useful.
+
+The JSON table discussed
+[here](/spec/table-format/table-format-1.json) translates into the
+following RDF triples:
+
+````nquads
+<http://statistics.gov.scot/data/births> <http://purl.org/dc/terms/issued> "2014-07-29T02:00:00+02:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://statistics.gov.scot/data/births> <http://purl.org/dc/terms/modified> "2016-02-09T12:17:48Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://statistics.gov.scot/data/births> <http://purl.org/dc/terms/title> "Births" .
+````
+
 
 TBD: align JSON with RDF.
 
