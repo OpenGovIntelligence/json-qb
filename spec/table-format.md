@@ -202,19 +202,45 @@ ideally they normally would be.  To make sure we have the right labels
 for each value we need to look the values up inside `[structure
 dimension-values <dimension-value-key> label]`
 
-## Single Column Table
+## Single Column Table (1D slice)
 
 When the dimensions are sufficiently locked to form a single column
 the data will be represented like this:
 
 ````
- "headings": {"refArea": ["S12000005", "S12000042", "S12000034", "S12000035", "S12000041", "S12000013", "S12000006", "S12000036", "S12000033"],
-              "refPeriod": ["1999"]},
+ "headings": {"refArea": ["S12000005", "S12000042", "S12000034", "S12000035", "S12000041", "S12000013", "S12000006", "S12000036", "S12000033"]},
  "total_cells": 31,
  "array": [2311, 2501, 1085, 834, 4764, 544, 265, 1402, 1522]
 ````
 
+Note that because we now only have 1 free dimension, the column no
+longer has a column label (technically the label of the column would
+be the union of all its locked dimension/values).  For this reason we
+change the format of the data structure to be just a single array.
+Because the format of the structure has changed though, we change the
+key name from `table` to `array` to indicate a change in the datatype,
+and provide an easy way to test for the case where there is a single
+free dimension.
+
+A Core Table document will be considered invalid if it has both a
+`table` and `array` key simultaneously.
+
+`total_cells` is 31, because there are 31 councils in Scotland,
+however the page size extension is cutting the results short.
+
 ## Single Cell Values
+
+It is possible to lock all the dimensions so you end up with a single
+cell instead of a table or column/array.  When this happens the data
+looks like this:
+
+````
+ "total_cells": 31,
+ "cell": 2311
+````
+
+Note that there are no `headings` as there are no longer any free
+dimensions.
 
 TBD.  Cells need to be objects not literals.  We need to update this
 example to use objects not literal values with `@id` links to the RDF
@@ -268,21 +294,19 @@ correct and semantically valid RDF.
 
 # Future Work / Considerations
 
+- Define how the extension mechanism works.
+
+- Add support for filtering rows
+
+- Consider support for tree hierarchies / aggregations / roll-ups etc
+  in table rows.
+
 - Applications will need to define a reliable heuristic for generating
   prefixes and keys for use within the JSON.  We should discuss
   approaches to this, though this spec may not need to care how it is
   done.
 
-- Define how the extension mechanism works.
-
-- Add support for filters
-
-- Consider support for tree hierarchies / aggregations / roll-ups etc
-  in table rows.
-
 - Consider support for nested headers
-
-- 2 dimensional paging??
 
 - Indicating how data is sorted, e.g. by which column and which
   direction.
@@ -290,3 +314,8 @@ correct and semantically valid RDF.
 - Consider prefixing Core Table spec keys with a special prefix marker
   e.g. `$` to indicate they are distinct from prefix keys etc... `@`
   is used by JSON-LD.
+
+- 2 dimensional paging??  We've optimised for the common case, but we
+  might want to consider what supporting paging might look like in 2+
+  dimensions.  I suspect it will be too complicated and rarely useful
+  though.
