@@ -202,6 +202,10 @@ ideally they normally would be.  To make sure we have the right labels
 for each value we need to look the values up inside `[structure
 dimension-values <dimension-value-key> label]`
 
+## Dimension Metadata / qb:stucture
+
+
+
 ## Single Column Table (1D slice)
 
 When the dimensions are sufficiently locked to form a single column
@@ -291,6 +295,16 @@ not contradictory to the source RDF.
 We believe it important that if we are to leverage the JSON-LD
 standard for its features, then we are compelled to also ensure it is
 correct and semantically valid RDF.
+
+TBD: align JSON with RDF.
+
+# Alternative Formats
+
+TBD: list reasons for inventing a new format and not adopting one of
+the alternatives below:
+
+- http://json-stat.org/
+- https://www.w3.org/TR/csv2json/
 
 # Future Work / Considerations
 
