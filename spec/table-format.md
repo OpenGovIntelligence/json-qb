@@ -250,7 +250,7 @@ corresponding to `dimension-values` specified in
 `[structure dimension-values <dimension-key>]`.  The order of the keys
 corresponds directly to the order of the data under `table`.
 
-The example table above looks like this:
+A summarised example of the table above looks like this:
 
 ````json
  "headings": {"refArea": ["S12000005", "S12000042", "S12000034", "S12000035", "S12000041", "S12000013", "S12000006", "S12000036", "S12000033"],
@@ -264,6 +264,11 @@ The example table above looks like this:
            "2003":[2003, 2368, 1089, 732, 4577, 468, 255, 1307, 1548],
            "2004":[2075, 2388, 1071, 807, 4568, 501, 223, 1431, 1539]}
 ````
+
+`NOTE` in practice the table arrays will contain objects with `@id`
+links to the underlying observations whilst the `value` key will
+reference the observations `measure-property`.  Additional metadata on
+the observation may also be present.  An example "full" cell is [shown below](#single-cell-values).
 
 The `table` key contains an object with keys corresponding to
 `dimension-values` belonging to the dimension specified by `table_by`.
@@ -360,9 +365,33 @@ dimensional slices are largely meaningless to visualisations and end
 users.  If users want the whole cube then they can use an alternate
 format more suited to it, such as `application/n-triples`.
 
-## Extension Mechanism
+## Service Layer Extension
 
-TBD
+The Table Core format so far says nothing about integration with the
+service layer, and has instead focused on being a data serialisation
+format for cube slices.  We believe that this boundary is important
+and also requires representation in the data format, for example some
+applications may wish to communicate both the URI of a resource and a
+URL link to another service route.  One example of this integration is
+with `_pagination` links which could be used to propogate application
+state in the manner of [HATEOS](https://en.wikipedia.org/wiki/HATEOAS)
+query parameters.
+
+In order to achieve a clear separation of concerns and retain the
+ability for applications to unambiguously separate the data from the
+service we reserve the `_` prefix in JSON object keys for applications
+and services to overlay the core data format with their own
+definitions anywhere outside of a `@context` block.  This allows
+developers the flexibility to add service specific annotations to the
+format anywhere in the JSON tree.
+
+If we are to build tools that can work across different services then
+we may also need to standardise these links, though I think we should
+do so in another specification.  Also we may wish to even incorporate
+a more elaborate 'extension mechanism' that allows services to
+implement different parts of the standard, whilst extending it in
+unforseen ways.
+
 
 ## JSON-LD
 
@@ -427,7 +456,8 @@ the alternatives below:
 
 # Future Work / Considerations
 
-- Define how the extension mechanism works.
+- Consider whether we need a more elaborate extension mechanism, with
+  e.g. namespaces etc.
 
 - Add support for filtering rows
 
@@ -443,10 +473,6 @@ the alternatives below:
 
 - Indicating how data is sorted, e.g. by which column and which
   direction.
-
-- Consider prefixing Core Table spec keys with a special prefix marker
-  e.g. `$` to indicate they are distinct from prefix keys etc... `@`
-  is used by JSON-LD.
 
 - 2 dimensional paging??  We've optimised for the common case, but we
   might want to consider what supporting paging might look like in 2+
