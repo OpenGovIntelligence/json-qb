@@ -235,9 +235,9 @@ table above:
 
 ## Multiple Column Table (2 Free Dimensions)
 
-We define the keys `table`, `table_by`, `headings` and `total_cells`
+We define the keys `table`, `table_by`, `headings` and `total_observations`
 to describe a multi column table or 2D slice.  The `headings` and
-`total_cells` keys are present for all dimensionalities of data,
+`total_observations` keys are present for all dimensionalities of data,
 whilst the `table` and `table_by` keys will only be present if the
 data is two dimensional.
 
@@ -256,7 +256,7 @@ A summarised example of the table above looks like this:
  "headings": {"refArea": ["S12000005", "S12000042", "S12000034", "S12000035", "S12000041", "S12000013", "S12000006", "S12000036", "S12000033"],
               "refPeriod": ["1999", "2000", "2001", "2002", "2003", "2004"]},
  "table_by":"refPeriod",
- "total_cells": 186,
+ "total_observations": 186,
  "table": {"1999":[2311, 2501, 1085, 834, 4764, 544, 265, 1402, 1522],
            "2000":[2088, 2320, 1049, 792, 4643, 490, 228, 1369, 1462],
            "2001":[2097, 2247, 1103, 780, 4489, 529, 226, 1283, 1468],
@@ -297,7 +297,7 @@ would need to:
    positionally indexed.  So to render the table we could trivially do
    so with two for loops.
 
-The key `total_cells` provides a count of the number of cells within the
+The key `total_observations` provides a count of the number of cells within the
 currently selected slice.  This value may be greater than the amount
 of cells shown in the `table`, due to pagination.
 
@@ -315,7 +315,7 @@ the data will be represented like this:
 
 ````
  "headings": {"refArea": ["S12000005", "S12000042", "S12000034", "S12000035", "S12000041", "S12000013", "S12000006", "S12000036", "S12000033"]},
- "total_cells": 31,
+ "total_observations": 31,
  "array": [2311, 2501, 1085, 834, 4764, 544, 265, 1402, 1522]
 ````
 
@@ -331,7 +331,7 @@ free dimension.
 A Core Table document will be considered invalid if it has both a
 `table` and `array` key simultaneously.
 
-`total_cells` is 31, because there are 31 councils in Scotland,
+`total_observations` is 31, because there are 31 councils in Scotland,
 however the page size extension is cutting the results short.
 
 ## Single Cell Values
@@ -341,7 +341,7 @@ cell instead of a table or column/array.  When this happens the data
 looks like this:
 
 ````
- "total_cells": 31,
+ "total_observations": 1,
  "cell": 2311
 ````
 

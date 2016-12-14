@@ -1,7 +1,7 @@
 {"@id":"http://statistics.gov.scot/data/births",
  "title":"Births",
  "issued":"2014-07-29t02:00:00+02:00",
- "total_cells": 1,
+ "total_observations": 1,
  "cell": {"@id": "http://obs/42314234325432", "count": 2311},
  "structure": {"@id":"http://statistics.gov.scot/data/births/structure",
                "locked-dimensions": {"timeperiod": {"@id":"http://statistics.gov.scot/def/dimension/timePeriod",
