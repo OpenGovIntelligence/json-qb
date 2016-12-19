@@ -71,7 +71,7 @@ Each header value is an ordered array of identifiers referencing each
                      "rows" : {"refarea" : ["S12000005", "S12000042", "S12000034", "S12000035", "S12000041", "S12000013", "S12000006", "S12000036", "S12000008", "S12000045",
                                             "S12000033"]},
 
-                     "column_hierarchy" : ["year", "gender", "measure"]}
+                     "column_hierarchy" : ["year", "gender", "measure"]},
 
 
         "data": [[[101, 20.3], [104, 21.2]],
@@ -106,7 +106,7 @@ shows that the data is sorted by the column 2000 / Male / Ratio
 column.  Sorting can only be done by the leaf columns.
 
 ```json
-        "sorted" : {"by_column" : ["2000" "Male" "Ratio"]
+        "sorted" : {"by_column" : ["2000" "Male" "Ratio"],
                     "direction": "asc"}
 ```
 
@@ -114,6 +114,6 @@ Alternatively applications can sort by the order of the row dimension
 values:
 
 ```json
-        "sorted" : {"by_row" : "refarea"
+        "sorted" : {"by_row" : "refarea",
                     "direction" : "desc"}
 ```
