@@ -100,20 +100,45 @@ appropriate observation and store its measured value under the key
 
 ## Sorting
 
-The keys `by_column` and `direction` are used to show which column
-dimension the data was sorted by.  For example the JSON snippet below
-shows that the data is sorted by the column 2000 / Male / Ratio
-column.  Sorting can only be done by the leaf columns.
+We provide two mutually exclusive methods for sorting data,
+`by_column_value` and `by_row_order`, both options also support a
+`direction` property which lets you specify either `asc` or `desc` for
+an ascending or descending order respectively.
+
+### Sorting by_column_value
+
+The key `by_column_value` is used to indicate which column dimension
+the data was sorted by.  Setting this means that all of the rows
+(including the row headers) will be sorted by either the `asc`ending
+or `desc`ending order of values in the specified column.  The value
+for the `by_column_value` key identifies the column to sort on by
+specifying a path to the column dimension.  For example the JSON
+snippet below shows that the data is sorted by the column 2000 / Male
+/ Ratio column.  It is only valid to sort on leaf columns, not parent
+ones.
 
 ```json
-        "sorted" : {"by_column" : ["2000" "Male" "Ratio"],
+        "sorted" : {"by_column_value" : ["2000" "Male" "Ratio"],
                     "direction": "asc"}
 ```
 
-Alternatively applications can sort by the order of the row dimension
-values:
+### Sorting by_row_order
+
+The other way to sort is by the order of the values in the row
+dimension.  This is an orthogonal, way to sort as you are sorting not
+by values in the data, but by the order of the free dimension that is
+mapped to the row axis.
+
+The actual algorithm used to sort `by_row_order` is implementation
+specific, but should where supplied use the appropriate properties
+defined in the code-list.  If no such properties are supplied
+implementations should choose to sort on another parameter, such as an
+associated label or identifier.
+
+As with `by_column_value` the `direction` can be set as either `asc`
+or `desc`.
 
 ```json
-        "sorted" : {"by_row" : "refarea",
+        "sorted" : {"by_row_order" : "refarea",
                     "direction" : "desc"}
 ```
